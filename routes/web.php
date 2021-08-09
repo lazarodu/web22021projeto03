@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdotanteController;
+use App\Http\Controllers\Initial\InicioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('inicial', ["nome" => "Lázaro"]);
-});
+Route::get('/', [InicioController::class, "index"]);
 Route::get("/adotante", [AdotanteController::class, "index"]);
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+  return view('dashboard');
+})->name('dashboard');

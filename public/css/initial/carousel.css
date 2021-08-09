@@ -1,0 +1,21 @@
+@keyframes slide {
+  50% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+main section.carousel {
+  overflow: hidden;
+}
+main section.carousel ol {
+  display: flex;
+
+  list-style-type: none;
+  animation: slide 30s infinite;
+}
+main h1 {
+  margin-top: 2rem;
+  text-align: center;
+}
