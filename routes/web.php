@@ -16,8 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [InicioController::class, "index"]);
-Route::get("/adotante", [AdotanteController::class, "index"]);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-  return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+  Route::get('/dashboard', function () {
+    return view('dashboard');
+  })->name('dashboard');
+
+  Route::resource("adotante", AdotanteController::class);
+});

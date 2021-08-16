@@ -7,6 +7,7 @@
 }
 :root {
   --color-font: black;
+  --color-white: white;
   --color-strong: #9d7171;
   --color-light: #e1d3d3;
 }
@@ -19,7 +20,6 @@ body {
 header {
   display: grid;
   grid-template-columns: max-content auto;
-  border-bottom: 0.8rem solid var(--color-strong);
 }
 header section {
   display: flex;
@@ -56,4 +56,23 @@ header div a:hover {
 }
 .bg-button {
   background-color: var(--color-strong);
+}
+
+nav {
+  background-color: var(--color-light);
+}
+nav ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+}
+nav ul li {
+  padding: 1rem;
+}
+nav ul li:hover {
+  background-color: var(--color-strong);
+}
+nav ul li a {
+  text-decoration: none;
+  color: var(--color-font);
 }
