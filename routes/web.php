@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdotanteController;
+use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\Initial\InicioController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +25,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
   })->name('dashboard');
 
   Route::resource("adotante", AdotanteController::class);
+  Route::resource("animal", AnimalController::class);
 });

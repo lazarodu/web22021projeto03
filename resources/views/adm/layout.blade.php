@@ -23,7 +23,7 @@
         <a href="{{url('/adotante')}}">Adotantes</a>
       </li>
       <li>
-        <a href="">Animais</a>
+        <a href="{{url('/animal')}}">Animais</a>
       </li>
       <li>
         <a href="">Avisos</a>

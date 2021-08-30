@@ -13,4 +13,9 @@ class Adotante extends Model
   {
     return $this->belongsTo(User::class);
   }
+
+  public function adotantes()
+  {
+    return $this->hasMany(Animal::class);
+  }
 }
