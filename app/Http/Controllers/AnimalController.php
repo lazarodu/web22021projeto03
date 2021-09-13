@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Adotante;
 use App\Models\Animal;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\Null_;
 
 class AnimalController extends Controller
 {
@@ -25,7 +27,8 @@ class AnimalController extends Controller
    */
   public function create()
   {
-    //
+    $adotantes = Adotante::all();
+    return view("adm/animal/create", compact('adotantes'));
   }
 
   /**
@@ -36,7 +39,20 @@ class AnimalController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $validated = $request->validate([
+      'nome' => 'required|max:255',
+      'nascimento' => 'required|max:255',
+    ]);
+    if ($validated) {
+      $animal = new Animal();
+      $animal->nome = $request->get('nome');
+      $animal->nascimento = $request->get('nascimento');
+      if ($request->get('adotante_id')) {
+        $animal->adotante_id = $request->get('adotante_id');
+      }
+      $animal->save();
+      return redirect("animal");
+    }
   }
 
   /**
@@ -58,7 +74,8 @@ class AnimalController extends Controller
    */
   public function edit(Animal $animal)
   {
-    //
+    $adotantes = Adotante::all();
+    return view("adm/animal/edit", compact('adotantes', 'animal'));
   }
 
   /**
@@ -70,7 +87,21 @@ class AnimalController extends Controller
    */
   public function update(Request $request, Animal $animal)
   {
-    //
+    $validated = $request->validate([
+      'nome' => 'required|max:255',
+      'nascimento' => 'required|max:255',
+    ]);
+    if ($validated) {
+      $animal->nome = $request->get('nome');
+      $animal->nascimento = $request->get('nascimento');
+      if ($request->get('adotante_id')) {
+        $animal->adotante_id = $request->get('adotante_id');
+      } else {
+        $animal->adotante_id = NULL;
+      }
+      $animal->save();
+      return redirect("animal");
+    }
   }
 
   /**
@@ -81,6 +112,7 @@ class AnimalController extends Controller
    */
   public function destroy(Animal $animal)
   {
-    //
+    $animal->delete();
+    return redirect("animal");
   }
 }

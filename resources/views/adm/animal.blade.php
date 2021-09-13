@@ -17,7 +17,11 @@
     <tr>
       <td>{{$animal->nome}}</td>
       <td>{{$animal->nascimento}}</td>
-      <td>{{$animal->adotante}}</td>
+      <td>
+        @if($animal->adotante)
+        {{$animal->adotante->user->name}}
+        @endif
+      </td>
       <td>
         <a href="{{route('animal.edit',$animal->id)}}" class="button">
           Editar
