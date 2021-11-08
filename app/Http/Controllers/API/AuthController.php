@@ -33,7 +33,7 @@ class AuthController extends Controller
         'password' => Hash::make($request->get('password')),
       ]);
 
-      $token = $user->createToken('auth_token')->painTextToken;
+      $token = $user->createToken('auth_token')->plainTextToken;
 
       $this->success([
         'access_token' => $token,
