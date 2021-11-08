@@ -35,7 +35,7 @@ class AuthController extends Controller
 
       $token = $user->createToken('auth_token')->plainTextToken;
 
-      $this->success([
+      return $this->success([
         'access_token' => $token,
         'user' => $user,
       ], "Cadastro realizado com sucesso!!!");
