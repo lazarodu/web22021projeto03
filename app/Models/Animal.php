@@ -13,4 +13,8 @@ class Animal extends Model
   {
     return $this->belongsTo(Adotante::class);
   }
+  public function vacinacao()
+  {
+    return $this->hasMany(Vacinacao::class);
+  }
 }

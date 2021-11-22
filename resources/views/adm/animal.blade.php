@@ -7,6 +7,7 @@
     <tr>
       <th>Nome</th>
       <th>Nascimento</th>
+      <th>Imagem</th>
       <th>Adotante</th>
       <th>Editar</th>
       <th>Remover</th>
@@ -17,6 +18,7 @@
     <tr>
       <td>{{$animal->nome}}</td>
       <td>{{$animal->nascimento}}</td>
+      <td><img src="{{$animal->imagem}}" /></td>
       <td>
         @if($animal->adotante)
         {{$animal->adotante->user->name}}
