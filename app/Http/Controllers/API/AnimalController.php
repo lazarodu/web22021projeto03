@@ -17,7 +17,7 @@ class AnimalController extends Controller
    */
   public function index()
   {
-    $animais = Animal::all();
+    $animais = Animal::with('vacinacao')->get();
     return $this->success($animais);
   }
 
