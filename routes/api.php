@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AdotanteController;
 use App\Http\Controllers\API\AnimalController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\VacinacaoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,5 +25,6 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::get('/logout', [AuthController::class, 'logout']);
   Route::resource("adotante", AdotanteController::class);
   Route::resource("animal", AnimalController::class);
+  Route::resource("vacina", VacinacaoController::class);
   Route::delete("/castracao/{animal}", [AnimalController::class, 'deleteCastracao']);
 });
