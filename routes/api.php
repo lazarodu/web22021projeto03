@@ -24,4 +24,5 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::get('/logout', [AuthController::class, 'logout']);
   Route::resource("adotante", AdotanteController::class);
   Route::resource("animal", AnimalController::class);
+  Route::delete("/castracao/{animal}", [AnimalController::class, 'deleteCastracao']);
 });
