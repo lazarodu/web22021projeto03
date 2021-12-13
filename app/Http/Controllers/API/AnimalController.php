@@ -90,7 +90,7 @@ class AnimalController extends Controller
           $animal->nascimento = $request->get('nascimento');
         }
         if ($request->get('castracao')) {
-          $animal->adotante_id = $request->get('castracao');
+          $animal->castracao = $request->get('castracao');
         }
         $animal->save();
         return $this->success($animal);
