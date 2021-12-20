@@ -70,14 +70,12 @@ class VacinacaoController extends Controller
   public function update(Request $request, $id)
   {
     $validated = $request->validate([
-      'animal_id' => 'required|integer|exists:App\Models\Animal,id',
       'nome' => 'required|max:255',
       'data' => 'required|date',
     ]);
     if ($validated) {
       try {
         $vacinacao = Vacinacao::findOrFail($id);
-        $vacinacao->animal_id = $request->get('animal_id');
         $vacinacao->nome = $request->get('nome');
         $vacinacao->data = $request->get('data');
         $vacinacao->save();
