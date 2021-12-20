@@ -62,7 +62,7 @@ class AnimalController extends Controller
   {
     try {
       $animal = Animal::where('id', $id)->with('vacinacao')->get();
-      return $this->success($animal);
+      return $this->success($animal[0]);
     } catch (\Throwable $th) {
       return $this->error("Animal não encontrado!!!", 401, $th->getMessage());
     }
