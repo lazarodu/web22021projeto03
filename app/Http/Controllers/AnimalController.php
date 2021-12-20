@@ -83,6 +83,8 @@ class AnimalController extends Controller
    */
   public function edit(Animal $animal)
   {
+    // dd($animal);
+    // $animal = Animal::findOrFail($id);
     $adotantes = Adotante::all();
     return view("adm/animal/edit", compact('adotantes', 'animal'));
   }
@@ -97,12 +99,20 @@ class AnimalController extends Controller
   public function update(Request $request, Animal $animal)
   {
     $validated = $request->validate([
-      'nome' => 'required|max:255',
-      'nascimento' => 'required|max:255',
+      'nome' => 'max:255',
+      'nascimento' => 'date',
+      'castracao' => 'date'
     ]);
     if ($validated) {
-      $animal->nome = $request->get('nome');
-      $animal->nascimento = $request->get('nascimento');
+      if ($request->get('nome')) {
+        $animal->nome = $request->get('nome');
+      }
+      if ($request->get('nascimento')) {
+        $animal->nascimento = $request->get('nascimento');
+      }
+      if ($request->get('castracao')) {
+        $animal->castracao = $request->get('castracao');
+      }
       if ($request->get('adotante_id')) {
         $animal->adotante_id = $request->get('adotante_id');
       } else {
@@ -119,8 +129,11 @@ class AnimalController extends Controller
    * @param  \App\Models\Animal  $animal
    * @return \Illuminate\Http\Response
    */
-  public function destroy(Animal $animal)
+  public function destroy($id)
   {
+    $animal = Animal::findOrFail($id);
+
+    // dd($animal);
     $animal->delete();
     return redirect("animal");
   }
