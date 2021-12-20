@@ -78,14 +78,16 @@ class AnimalController extends Controller
   public function update(Request $request, $id)
   {
     $validated = $request->validate([
-      'nome' => 'required|max:255',
+      'nome' => 'max:255',
       'nascimento' => 'date',
       'castracao' => 'date'
     ]);
     if ($validated) {
       try {
         $animal = Animal::findOrFail($id);
-        $animal->nome = $request->get('nome');
+        if ($request->get('nome')) {
+          $animal->nome = $request->get('nome');
+        }
         if ($request->get('nascimento')) {
           $animal->nascimento = $request->get('nascimento');
         }
