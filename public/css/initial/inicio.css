@@ -57,3 +57,18 @@ header div a:hover {
 .bg-button {
   background-color: var(--color-strong);
 }
+aside {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+aside div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+aside div img {
+  width: 10rem;
+  border-radius: 5rem;
+  margin: 1rem auto;
+}

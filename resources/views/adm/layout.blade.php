@@ -26,7 +26,7 @@
         <a href="{{url('/animal')}}">Animais</a>
       </li>
       <li>
-        <a href="">Avisos</a>
+        <a href="{{url('/dashboard')}}">Usuários</a>
       </li>
     </ul>
   </nav>

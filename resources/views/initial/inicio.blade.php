@@ -33,9 +33,10 @@
     @endif
   </header>
   <main>
+    @inject('initial', 'App\Services\InitialService')
     <section class="carousel">
       <ol>
-        @foreach($imagens as $imagem)
+        @foreach($initial->carrousel() as $imagem)
         <li>
           <img src="{{asset($imagem['url'])}}" alt="{{$imagem['nome']}}" />
         </li>
@@ -43,8 +44,13 @@
       </ol>
     </section>
     <h1>
-      Registro de Animais Adotados
+      Adotantes
     </h1>
+    <aside>
+      @foreach($initial->adotantes() as $adotantes)
+      <div><img src="{{$adotantes->user->profile_photo_url}}"> {{$adotantes->user->name}}</div>
+      @endforeach
+    </aside>
   </main>
 </body>
 
