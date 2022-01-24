@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdotanteController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\Initial\InicioController;
+use App\Http\Livewire\Avisos;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,4 +27,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
   Route::resource("adotante", AdotanteController::class);
   Route::resource("animal", AnimalController::class);
+  Route::get("avisos", Avisos::class);
 });

@@ -26,6 +26,9 @@
         <a href="{{url('/animal')}}">Animais</a>
       </li>
       <li>
+        <a href="{{url('/avisos')}}">Avisos</a>
+      </li>
+      <li>
         <a href="{{url('/dashboard')}}">Usuários</a>
       </li>
     </ul>
