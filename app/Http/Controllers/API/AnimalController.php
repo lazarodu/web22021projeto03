@@ -30,23 +30,21 @@ class AnimalController extends Controller
    */
   public function store(Request $request)
   {
+    // print_r($request->get('imagem'));
     $validated = $request->validate([
       'nome' => 'required|max:255',
       'nascimento' => 'required|max:255',
-      'imagem' => 'image',
-      // 'adotante_id' => 'integer|exists:App\Models\Adotante,id'
+      'imagem' => 'required',
+      'file' => 'required',
     ]);
     if ($validated) {
       $animal = new Animal();
       $animal->nome = $request->get('nome');
       $animal->nascimento = $request->get('nascimento');
-      $path = $request->file('imagem')->store('', 's3');
-      Storage::disk('s3')->setVisibility($path, 'public');
-      $url = Storage::disk('s3')->url($path);
+      $image_base64 = base64_decode($request->get('imagem'));
+      Storage::disk('s3')->put($request->get('file'), $image_base64, 'public');
+      $url = Storage::disk('s3')->url($request->get('file'));
       $animal->imagem = $url;
-      if ($request->get('adotante_id')) {
-        $animal->adotante_id = $request->get('adotante_id');
-      }
       $animal->save();
       return $this->success($animal);
     }
