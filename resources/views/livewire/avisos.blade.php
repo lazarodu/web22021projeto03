@@ -1,10 +1,15 @@
 <div>
-  <p>{{$content}}</p>
+
   <form method="post" wire:submit.prevent="store">
+
+    <input type="text" name="expoToken" wire:model="expoToken" class="w-full">
+
+    <p>{{$content}}</p>
     <div class="bg-red-400">
       @error('content') <p>{{$message}}</p> @enderror
     </div>
     <input type="hidden" name="editId" wire:model="editId" />
+    <input type="text" name="title" wire:model="title" class="w-full" /><br />
     <textarea name="content" wire:model="content" class="w-full rounded-lg"></textarea><br />
     <button type="submit" class="bg-colorstrong rounded-lg p-2">Enviar</button>
     <button type="button" class="bg-colorlight rounded-lg p-2" wire:click="limpar()">Limpar</button>

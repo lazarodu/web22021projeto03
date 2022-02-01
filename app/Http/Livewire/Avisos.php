@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Aviso;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Http;
 
 class Avisos extends Component
 {
@@ -12,9 +13,12 @@ class Avisos extends Component
 
   public $content = "";
   public $editId = 0;
+  public $title = "";
+  public $expoToken = "ExponentPushToken[EoOgqUBXRxl---b-H0tBcu]";
 
   protected $rules = [
-    'content' => 'required|min:5|max:255'
+    'title' => 'required|min:5|max:255',
+    'content' => 'required|min:5|max:255',
   ];
 
   public function render()
@@ -34,10 +38,20 @@ class Avisos extends Component
       $aviso = Aviso::findOrFail($this->editId);
     }
     $aviso->content = $this->content;
-    $aviso->save();
+    // $aviso->save();
+    dd($this->content);
+    $response = Http::post('https://exp.host/--/api/v2/push/send', [
+      'to' => $this->expoToken,
+      'sound' => 'default',
+      'title' => $this->title,
+      'body' => $this->content,
+      'data' => ["data" => "Que bom que vocês vieram!!!"],
+    ]);
 
     $this->content = '';
     $this->editId = 0;
+
+    // dd($response);
   }
 
   public function edit(Aviso $aviso)
